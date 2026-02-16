@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftCart</title>
+
+    <!-- Tailwind + DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-base-200">
+    <!-- ================= NAVBAR ================= -->
+    <header>
+      <div
+        class="navbar bg-white px-4 md:px-20 shadow-sm flex justify-between items-center h-16"
+      >
+        <div class="w-1/4">
+          <h1 class="text-2xl font-bold text-indigo-600">SwiftCart</h1>
+        </div>
+        <div class="hidden md:flex flex-1 justify-center gap-8 font-medium">
+          <a class="text-indigo-600 cursor-pointer"> Home </a>
+          <a class="hover:text-indigo-600 cursor-pointer"> Products </a>
+          <a class="hover:text-indigo-600 cursor-pointer"> About </a>
+          <a class="hover:text-indigo-600 cursor-pointer"> Contact </a>
+        </div>
+        <div class="w-1/4 flex justify-end items-center gap-4">
+          <i class="fa-solid fa-cart-shopping text-xl cursor-pointer"></i>
+          <div class="dropdown dropdown-end md:hidden">
+            <label tabindex="0" class="cursor-pointer">
+              <i class="fa-solid fa-bars text-2xl"></i>
+            </label>
+            <ul
+              tabindex="0"
+              class="menu dropdown-content mt-3 z-[1] p-4 shadow bg-white rounded-box w-52"
+            >
+              <li><a>Home</a></li>
+              <li><a>Products</a></li>
+              <li><a>About</a></li>
+              <li><a>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section
+      class="relative min-h-[600px] flex items-center bg-cover bg-center bg-no-repeat"
+      style="background-image: url(&quot;./assets/banner-image.png&quot;)"
+    >
+    
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-800/40 to-transparent"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
+      ></div>
+      <div class="container mx-auto px-6 md:px-20 relative z-10">
+        <div class="max-w-2xl text-white">
+          
+          <h1
+            class="my-6 text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight"
+          >
+            Best Collection Just For You
+          <p
+            class="my-6 text-sm text-gray-200 max-w-lg leading-relaxed"
+          >
+            Discover the latest trends in fashion and lifestyle. High-quality
+            products, curated specifically for your unique style.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button
+              class="btn btn-primary btn-lg px-10 rounded-full border-none bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/30 transition-all duration-300"
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block text-white/50"
+      >
+        <i class="fa-solid fa-chevron-down text-2xl"></i>
+      </div>
+    </section>
+    <!-- ================= WHY CHOOSE US ================= -->
+
+    <section class="container mx-auto py-16 px-10 text-center">
+      <h2 class="text-3xl font-bold mb-3">Why Choose Us</h2>
+
+      <p class="mb-10 text-gray-500">We provide the best shopping with top-notch service.</p>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="card bg-base-100 shadow">
+          <div class="card-body items-start text-left">
+            <i class="fa-solid fa-truck text-3xl text-primary"></i>
+
+            <h2 class="font-bold">Fast Delivery</h2>
+
+            <p>Get your orders delivered to your doorstep quickly and efficiently.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow">
+          <div class="card-body items-start text-left">
+            <i class="fa-solid fa-headset text-3xl text-primary"></i>
+
+            <h2 class="font-bold">24/7 Support</h2>
+
+            <p>Our support team is available around the clock to assist you.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow">
+          <div class="card-body items-start text-left">
+            <i class="fa-solid fa-shield text-3xl text-primary"></i>
+
+            <h2 class="font-bold">Secure Payment</h2>
+
+            <p>Experience safe and secure transactions with our encrypted payment systems.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow">
+          <div class="card-body items-start text-left">
+            <i class="fa-solid fa-rotate text-3xl text-primary"></i>
+
+            <h2 class="font-bold">Easy Return</h2>
+
+            <p>Not satisfied? Return your products easily within 30 days.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRENDING PRODUCTS ================= -->
+
+   <section class="px-10 py-16 container mx-auto">
+
+  <h2 class="text-3xl font-bold mb-10">
+
+    Trending Now
+
+  </h2>
+
+
+
+  <!-- PRODUCT GRID -->
+
+  <div id="productContainer"
+  class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+
+  </div>
+
+
+
+</section>
+
+    <!-- ============ FOOTER =============== -->
+    <footer class="bg-indigo-600 text-white pt-16 pb-10">
+  <div class="container mx-auto px-6 md:px-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      
+      <div class="space-y-4">
+        <h6 class="footer-title text-2xl font-bold opacity-100 text-white capitalize">SwiftCart</h6>
+        <p class="text-sm leading-relaxed opacity-80">
+          Your one-stop shop for all your fashion and lifestyle needs. Quality products, fast delivery, and excellent support.
+        </p>
+      </div>
+
+      <div class="flex flex-col space-y-3">
+        <h6 class="footer-title text-white opacity-100 font-semibold mb-2">Quick Links</h6>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Home</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Products</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Services</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Contact</a>
+      </div>
+
+      <div class="flex flex-col space-y-3">
+        <h6 class="footer-title text-white opacity-100 font-semibold mb-2">Support</h6>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">FAQ</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Shipping</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Returns</a>
+        <a class="link link-hover opacity-70 hover:opacity-100 transition-all">Privacy Policy</a>
+      </div>
+
+      <div class="space-y-4">
+        <h6 class="footer-title text-white opacity-100 font-semibold mb-2">Newsletter</h6>
+        <p class="text-sm opacity-70">Get the latest updates and offers.</p>
+        <div class="flex flex-col gap-2">
+          <input 
+            type="email" 
+            placeholder="email@example.com" 
+            class="input input-bordered w-full bg-neutral-focus text-black/60 border-gray-600 focus:border-indigo-500" 
+          />
+          <button class="btn btn-primary w-full shadow-lg shadow-indigo-500/20">
+            Subscribe
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/10 mt-16 pt-8 pb-4">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+    
+    <p class="text-sm opacity-60 order-2 md:order-1">
+      &copy; 2026 <span class="font-semibold text-white">SwiftCart</span>. All rights reserved.
+    </p>
+
+    <div class="flex items-center gap-6 order-1 md:order-2">
+      <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-indigo-400 transition-all duration-300">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-indigo-400 transition-all duration-300">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-indigo-400 transition-all duration-300">
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+      <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-indigo-400 transition-all duration-300">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="#" class="text-xl opacity-60 hover:opacity-100 hover:text-indigo-400 transition-all duration-300">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+  </div>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
+</html>
