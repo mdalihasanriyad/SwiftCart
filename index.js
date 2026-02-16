@@ -1,49 +1,18 @@
+async function loadProducts() {
+  const res = await fetch("https://fakestoreapi.com/products");
 
-/* =========================
+  const products = await res.json();
 
-LOAD PRODUCTS
-
-========================= */
-
-async function loadProducts(){
-
-const res = await fetch(
-
-"https://fakestoreapi.com/products"
-
-);
-
-const products = await res.json();
-
-displayProducts(products);
-
+  displayProducts(products);
 }
 
+function displayProducts(products) {
+  const container = document.getElementById("productContainer");
 
+  container.innerHTML = "";
 
-
-/* =========================
-
-DISPLAY PRODUCTS
-
-========================= */
-
-function displayProducts(products){
-
-const container = document.getElementById(
-
-"productContainer"
-
-);
-
-container.innerHTML = "";
-
-
-
-products.forEach(product => {
-
-
-container.innerHTML += `
+  products.forEach((product) => {
+    container.innerHTML += `
 
 
 <div class="card bg-base-100 shadow">
@@ -72,7 +41,7 @@ ${product.category}
 
 <h2 class="card-title text-lg">
 
-${product.title.slice(0,30)}
+${product.title.slice(0, 30)}
 
 </h2>
 
@@ -118,51 +87,15 @@ Add
 
 
 `;
-
-
-});
-
+  });
 }
 
-
-
-
-
-/* =========================
-
-DETAILS
-
-========================= */
-
-function productDetails(id){
-
-alert("Product ID: " + id);
-
+function productDetails(id) {
+  alert("Product ID: " + id);
 }
 
-
-
-
-/* =========================
-
-ADD TO CART
-
-========================= */
-
-function addToCart(id){
-
-alert("Added Product: " + id);
-
+function addToCart(id) {
+  alert("Added Product: " + id);
 }
-
-
-
-
-/* =========================
-
-INIT
-
-========================= */
 
 loadProducts();
-
