@@ -1,27 +1,22 @@
-// ================= global variables =================
+// -------local storage -----------------
 let cart = JSON.parse(localStorage.getItem("swiftCart")) || [];
 
-// ================= initialization =================
+
 document.addEventListener("DOMContentLoaded", () => {
-    // ১. চেক করবে কোন পেজে আছে (Home নাকি Products)
     const productContainer = document.getElementById("productContainer");
     const categoryContainer = document.getElementById("categoryContainer");
-
     if (categoryContainer) {
-        // যদি products.html এ থাকে
         loadCategories();
-        loadAllProducts(); // সব প্রোডাক্ট দেখাবে
+        loadAllProducts(); 
     } else if (productContainer) {
-        // যদি index.html এ থাকে (Trending Now সেকশন)
         loadTrendingProducts();
     }
 
     updateCartBadge();
 });
 
-// ================= product loading logic =================
+// -------Trending 4 products----------------
 
-// হোমপেজের জন্য মাত্র ৩টি প্রোডাক্ট
 async function loadTrendingProducts() {
     try {
         const res = await fetch("https://fakestoreapi.com/products?limit=4");
@@ -32,7 +27,7 @@ async function loadTrendingProducts() {
     }
 }
 
-// প্রোডাক্টস পেজের জন্য সব প্রোডাক্ট
+// -------All products for products page----------------
 async function loadAllProducts() {
     try {
         const res = await fetch("https://fakestoreapi.com/products");
@@ -43,7 +38,7 @@ async function loadAllProducts() {
     }
 }
 
-// প্রোডাক্ট ডিসপ্লে করার কমন ফাংশন
+// ---------- show products-----------------
 function displayProducts(products) {
     const container = document.getElementById("productContainer");
     if (!container) return;
@@ -73,23 +68,21 @@ function displayProducts(products) {
     });
 }
 
-// ================= dynamic categories =================
+// -----------------Dynamic category---------------------
 
 async function loadCategories() {
     const container = document.getElementById("categoryContainer");
-    if (!container) return; // কন্টেইনার না থাকলে আগেই রিটার্ন করবে
+    if (!container) return;
 
     try {
         const res = await fetch("https://fakestoreapi.com/products/categories");
         const categories = await res.json();
 
-        // ১. শুরুর "All" বাটনটি আগে সেট করে নিন
-        container.innerHTML = `<button onclick="filterByCategory('all', this)" class="px-6 py-2 rounded-full bg-indigo-600 text-white font-medium category-btn">All</button>`;
+        container.innerHTML = `<button onclick="filterByCategory('all', this)" class="px-6 py-2 cursor-pointer rounded-full bg-indigo-600 text-white font-medium category-btn">All</button>`;
 
-        // ২. এখন API থেকে আসা ক্যাটাগরিগুলো লুপ করে বাটন তৈরি করুন
         categories.forEach(cat => {
             container.innerHTML += `
-                <button onclick="filterByCategory(\`${cat}\`, this)" class="px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-100 transition capitalize category-btn">
+                <button onclick="filterByCategory(\`${cat}\`, this)" class="px-6 py-2 cursor-pointer rounded-full bg-white border border-gray-200 hover:bg-gray-100 transition capitalize category-btn">
                     ${cat}
                 </button>`;
         });
@@ -98,22 +91,20 @@ async function loadCategories() {
     }
 }
 
+// -----------------Filter category----------------
 async function filterByCategory(category, btnElement) {
-    // ১. Active Class Logic (isActive)
     const allBtns = document.querySelectorAll('.category-btn');
     allBtns.forEach(btn => {
-        // Shob button ke ager obosthay niye jawa
+
         btn.classList.remove('bg-indigo-600', 'text-white');
         btn.classList.add('bg-white', 'text-gray-800');
     });
 
-    // Jeiti click kora hoyeche sheitike active kora
     if (btnElement) {
         btnElement.classList.add('bg-indigo-600', 'text-white');
         btnElement.classList.remove('bg-white', 'text-gray-800');
     }
 
-    // ২. Filter Logic
     let url;
     if (category === 'all') {
         url = "https://fakestoreapi.com/products";
@@ -130,16 +121,14 @@ async function filterByCategory(category, btnElement) {
     }
 }
 
-// ================= cart system (A to Z) =================
+// -----------------Cart functions---------------
 
 async function addToCart(id) {
     const itemIndex = cart.findIndex(item => item.id === id);
 
     if (itemIndex > -1) {
-        // যদি কার্টে আগে থেকেই থাকে তবে কোয়ান্টিটি বাড়বে
         cart[itemIndex].quantity += 1;
     } else {
-        // নতুন হলে API থেকে ডাটা এনে কার্টে ঢুকাবে
         const res = await fetch(`https://fakestoreapi.com/products/${id}`);
         const product = await res.json();
         cart.push({
@@ -155,32 +144,32 @@ async function addToCart(id) {
     alert("Product added to cart!");
 }
 
-// কোয়ান্টিটি বাড়ানোর জন্য
+
+// ---------Quentity increase ----------------
 function increaseQty(id) {
     const item = cart.find(item => item.id === id);
     if (item) {
         item.quantity += 1;
         saveCart();
-        // renderCartUI(); // যদি কার্ট পেজ থাকে তবে এটি কল করবেন
+        renderCart();
     }
 }
 
-// কোয়ান্টিটি কমানোর জন্য
+// ----------Quentity decrease----------------
 function decreaseQty(id) {
     const itemIndex = cart.findIndex(item => item.id === id);
     if (itemIndex > -1) {
         if (cart[itemIndex].quantity > 1) {
             cart[itemIndex].quantity -= 1;
         } else {
-            // ১ এর নিচে গেলে লিস্ট থেকে মুছে যাবে
             cart.splice(itemIndex, 1);
         }
         saveCart();
-        // renderCartUI();
+        renderCart();
     }
 }
 
-// কার্ট লোকাল স্টোরেজে সেভ করা এবং ব্যাজ আপডেট করা
+// ---------local storage----------------
 function saveCart() {
     localStorage.setItem("swiftCart", JSON.stringify(cart));
     updateCartBadge();
@@ -192,18 +181,15 @@ function checkout() {
         return;
     }
 
-    // ১. Success Message (Real world e ekhane API call hoy)
     alert("Order Place Done.");
 
-    // ২. Cart Empty kora
-    cart = []; // Array faka kora
-    saveCart(); // LocalStorage update kora
-    
-    // ৩. UI Update kora
-    renderCart(); // Cart list faka kora
-    toggleCart(); // Cart drawer bondho kora
+    cart = []; 
+    saveCart();
+    renderCart(); 
+    toggleCart(); 
 }
 
+// ------------------Update cart----------------
 function updateCartBadge() {
     const badges = document.querySelectorAll(".fa-cart-shopping + span, .cart-count");
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -214,11 +200,11 @@ function updateCartBadge() {
     });
 }
 
+
+// -----------------Product details----------------
 async function productDetails(id) {
     const modal = document.getElementById('product_modal');
     const content = document.getElementById('modalContent');
-    
-    // মডাল ওপেন করার আগে লোডিং দেখানো
     content.innerHTML = `<span class="loading loading-spinner loading-lg mx-auto"></span>`;
     modal.showModal();
 
@@ -247,7 +233,8 @@ async function productDetails(id) {
 }
 
 
-// ১. কার্ট ড্রয়ার ওপেন/ক্লোজ
+// -----------------Cart drawer----------------
+
 function toggleCart() {
     const drawer = document.getElementById('cartDrawer');
     const body = document.getElementById('drawerBody');
@@ -255,14 +242,14 @@ function toggleCart() {
     if (drawer.classList.contains('invisible')) {
         drawer.classList.remove('invisible');
         body.classList.remove('translate-x-full');
-        renderCart(); // কার্ট ওপেন হলে আইটেমগুলো দেখাবে
+        renderCart(); 
     } else {
         drawer.classList.add('invisible');
         body.classList.add('translate-x-full');
     }
 }
 
-// ২. কার্টে প্রোডাক্ট অ্যাড করা
+// ----------Add to cart----------------
 async function addToCart(id) {
     const itemIndex = cart.findIndex(item => item.id === id);
     if (itemIndex > -1) {
@@ -279,34 +266,11 @@ async function addToCart(id) {
         });
     }
     saveCart();
-    toggleCart(); // অ্যাড করার পর অটো ড্রয়ার খুলবে
+    toggleCart(); 
 }
 
-// ৩. কোয়ান্টিটি বাড়ানো (+)
-function increaseQty(id) {
-    const item = cart.find(item => item.id === id);
-    if (item) {
-        item.quantity += 1;
-        saveCart();
-        renderCart();
-    }
-}
 
-// ৪. কোয়ান্টিটি কমানো (-)
-function decreaseQty(id) {
-    const itemIndex = cart.findIndex(item => item.id === id);
-    if (itemIndex > -1) {
-        if (cart[itemIndex].quantity > 1) {
-            cart[itemIndex].quantity -= 1;
-        } else {
-            cart.splice(itemIndex, 1); // ১ এর নিচে গেলে রিমুভ
-        }
-        saveCart();
-        renderCart();
-    }
-}
-
-// ৫. ড্রয়ারের ভেতর কার্ট আইটেমগুলো দেখানো
+// -----------------Render cart----------------
 function renderCart() {
     const list = document.getElementById('cartItemsList');
     const totalDisplay = document.getElementById('cartTotal');
@@ -342,19 +306,21 @@ function renderCart() {
     totalDisplay.innerText = `$${total.toFixed(2)}`;
 }
 
-// আইটেম পুরোপুরি রিমুভ করা
+// -----------------Remove item----------------
+
 function removeItem(id) {
     cart = cart.filter(item => item.id !== id);
     saveCart();
     renderCart();
 }
 
-// সেভ এবং ব্যাজ আপডেট
+// ------------------Save cart and update badge----------------
 function saveCart() {
     localStorage.setItem("swiftCart", JSON.stringify(cart));
     updateCartBadge();
 }
 
+// ------------------Update cart badge----------------
 function updateCartBadge() {
     const badge = document.getElementById('cartCountBadge');
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
