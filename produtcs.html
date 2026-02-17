@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SwiftCart</title>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftCart - Our Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind + DaisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -14,10 +14,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
-  </head>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-  <body class="bg-base-200">
-    <!-- ================= NAVBAR ================= -->
     <header>
       <div
         class="navbar bg-white px-4 md:px-20 shadow-sm flex justify-between items-center h-16"
@@ -41,7 +40,7 @@
               tabindex="0"
               class="menu dropdown-content mt-3 z-[1] p-4 shadow bg-white rounded-box w-52"
             >
-              <li><a href="/index.html">Home</a></li>
+              <li><a  href="/index.html">Home</a></li>
               <li><a href="/produtcs.html">Products</a></li>
               <li><a>About</a></li>
               <li><a>Contact</a></li>
@@ -51,120 +50,14 @@
       </div>
     </header>
 
-    <!-- ================= HERO ================= -->
-    <section
-      class="relative min-h-[600px] flex items-center bg-cover bg-center bg-no-repeat"
-      style="background-image: url(&quot;./assets/banner-image.png&quot;)"
-    >
-    
-    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-800/40 to-transparent"></div>
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
-      ></div>
-      <div class="container mx-auto px-6 md:px-20 relative z-10">
-        <div class="max-w-2xl text-white">
-          
-          <h1
-            class="my-6 text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight"
-          >
-            Best Collection Just For You
-          <p
-            class="my-6 text-sm text-gray-200 max-w-lg leading-relaxed"
-          >
-            Discover the latest trends in fashion and lifestyle. High-quality
-            products, curated specifically for your unique style.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button
-              class="btn btn-primary btn-lg px-10 rounded-full border-none bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/30 transition-all duration-300"
-            >
-              Shop Now
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block text-white/50"
-      >
-        <i class="fa-solid fa-chevron-down text-2xl"></i>
-      </div>
-    </section>
-    <!-- ================= WHY CHOOSE US ================= -->
-
-    <section class="container mx-auto py-16 px-10 text-center">
-      <h2 class="text-3xl font-bold mb-3">Why Choose Us</h2>
-
-      <p class="mb-10 text-gray-500">We provide the best shopping with top-notch service.</p>
-
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="card bg-base-100 shadow">
-          <div class="card-body items-start text-left">
-            <i class="fa-solid fa-truck text-3xl text-primary"></i>
-
-            <h2 class="font-bold">Fast Delivery</h2>
-
-            <p>Get your orders delivered to your doorstep quickly and efficiently.</p>
-          </div>
+    <main class="container mx-auto px-6 py-12">
+    <div id="categoryContainer" class="flex flex-wrap justify-center gap-3 mb-12">
         </div>
 
-        <div class="card bg-base-100 shadow">
-          <div class="card-body items-start text-left">
-            <i class="fa-solid fa-headset text-3xl text-primary"></i>
-
-            <h2 class="font-bold">24/7 Support</h2>
-
-            <p>Our support team is available around the clock to assist you.</p>
-          </div>
+    <div id="productContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         </div>
+</main>
 
-        <div class="card bg-base-100 shadow">
-          <div class="card-body items-start text-left">
-            <i class="fa-solid fa-shield text-3xl text-primary"></i>
-
-            <h2 class="font-bold">Secure Payment</h2>
-
-            <p>Experience safe and secure transactions with our encrypted payment systems.</p>
-          </div>
-        </div>
-
-        <div class="card bg-base-100 shadow">
-          <div class="card-body items-start text-left">
-            <i class="fa-solid fa-rotate text-3xl text-primary"></i>
-
-            <h2 class="font-bold">Easy Return</h2>
-
-            <p>Not satisfied? Return your products easily within 30 days.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TRENDING PRODUCTS ================= -->
-
-   <section class="px-10 py-16 container mx-auto">
-
-  <h2 class="text-3xl font-bold mb-10">
-
-    Trending Now
-
-  </h2>
-
-
-
-  <!-- PRODUCT GRID -->
-
-  <div id="productContainer"
-  class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-
-  </div>
-
-
-
-</section>
-
-    <!-- ============ FOOTER =============== -->
     <footer class="bg-indigo-600 text-white pt-16 pb-10">
   <div class="container mx-auto px-6 md:px-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -238,6 +131,6 @@
 </div>
   </div>
     </footer>
-    <script src="./index.js"></script>
-  </body>
+ <script src="./index.js"></script>
+</body>
 </html>
